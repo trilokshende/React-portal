@@ -1,0 +1,121 @@
+import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import axios from 'axios';
+import {url} from '../common/backendportno'
+import '../CustomerPages/MenuList.css'
+import { addToCartAction } from '../reduxPages/actions/cartActions';
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const NonVegPizza = ()=>{
+    const [products, setproducts] = useState([]);
+    const dispatch = useDispatch()
+
+  const addToCart = (product) => {
+    toast('Successfully Added to the Cart...')
+    // alert("Successfully Added to the Cart...")
+    // call the API to add the product to the cart
+    dispatch(addToCartAction(product))
+  }
+
+    useEffect(() => {
+        console.log(`products component gets loaded`)
+        getProducts()
+    }, []);
+    
+    const getProducts= () =>{
+        // sending req to REST API
+        axios.get( url + '/products/nonVegPizza')
+        .then((res) =>{
+         //   const result = res.data
+            console.log(res)
+            if(res.status === 200){
+                setproducts(res.data)
+            }else{
+                alert('Error while loading OR list might be empty!')
+            }
+        })
+    }
+
+
+    // return (
+    //     <div >
+    //         <div className="HorizontalSlider-title">Non-Veg Pizza</div>
+    //         <div className="HorizontalSlider-container">
+    //             {
+    //                 products.map((product)=>{
+    //                     return (
+    //                         <div className="component-container">
+    //                             <div className="image-title">{product.title}</div>
+    //                             <img className="size" src={url + '/' + product.thumbnail} alt="thumbnail"/><br/>
+    //                             <div className="image-title">Price : Rs.{product.price}</div>
+    //                             <div className="image-title">Size : {product.size}</div>
+    //                             <button className=" center btn btn-success ">Add To Cart</button>
+
+    //                         </div>
+    //                     )
+    //                 })
+    //             }
+    //         </div>
+    //     </div>
+    // )  
+    // ---------------------------------------------------------------------------
+
+    return (
+        <div >
+            <div className="HorizontalSlider-title">Non-Veg Pizza</div>
+            <div className="HorizontalSlider-container table table-responsive">
+                {
+                    products.map((product)=>{
+                        return (
+                            <div className="component-container">
+                                <div className="image-title">{product.title}</div>
+                                <img className="size" src={url + '/' + product.thumbnail} alt="thumbnail"/><br/>
+                                <div className="image-title">Price : Rs.{product.price}</div>
+                                <div className="image-title">Size : {product.size}</div>
+                                <button className=" center btn btn-success " onClick={() => {
+                                    addToCart(product)
+                                    }}>Add To Cart
+                                </button>
+                                <ToastContainer/>
+
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        </div>
+    ) 
+
+
+    // -----------------------------------------------------------------------------
+    // return (
+    //     <div >
+    //         <div className="HorizontalSlider-title">Non-Veg Pizza</div>
+    //         <div class>
+    //             {
+    //                 products.map((product)=>{
+    //                     return (
+    //                         <table>
+    //                             <tr>
+    //                                 <td>
+    //                                 <div className="little-square">
+    //                                     <div className="image-title">{product.title}</div>
+    //                                     <img className="size" src={url + '/' + product.thumbnail} alt="thumbnail"/><br/>
+    //                                     <div className="image-title">Price : Rs.{product.price}</div>
+    //                                     <div className="image-title">Size : {product.size}</div>
+    //                                     <button className=" center btn btn-success ">Add To Cart</button>
+
+    //                                 </div>
+    //                                 </td>
+    //                             </tr>
+    //                         </table>
+    //                     )
+    //                 })
+    //             }
+    //         </div>
+    //     </div>
+    // )
+}
+
+export default NonVegPizza

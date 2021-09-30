@@ -1,0 +1,27 @@
+.products{
+    text-align: center;
+    width: 80%;
+    height: 400px;
+    margin: auto;
+    padding: 20px;
+}
+
+.button{
+    margin-top: 10px;
+}
+
+.center{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.add-product{
+    width: 80%;
+    margin: auto;
+}
+
+.thumbnail{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}

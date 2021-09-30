@@ -1,0 +1,14 @@
+.img-size{
+    height: 30px;
+    width: 30px;
+}
+
+.black{
+    color: black;
+    text-align: end;
+    margin-right: 10px;
+}
+
+.end{
+    margin-bottom: 20px;
+}

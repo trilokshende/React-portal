@@ -1,0 +1,25 @@
+.body{
+    color:indigo;
+}
+.right{
+   margin-left: 295px;
+}
+.background{
+    /* background-color:lightslategrey; */
+    background-color: blue;
+}
+
+.register{
+    margin-left: 150px;
+    text-align: center;
+}
+.table-columns td
+{   
+    width: 40%;
+    padding: 1px 20px 0 0; /* Only right padding*/
+}
+.table{     /* width for outer div in register form */
+    text-align: justify;
+	padding: 5px;
+
+}
